@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 禁用瀏覽器自動恢復捲動位置，確保從其他頁面返回時永遠回到頂端 -->
+    <script>if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智簡 Zhi Jian｜中小企業的 AI 駐點顧問 - 一位顧問，抵一支團隊</title>
+    <meta name="description" content="智簡是您的 AI 駐點顧問。三大服務：AI 工具導入與團隊培訓、社群經營代操、Vibe Coding 快速開發。月費陪跑，中小企業也請得起的 AI 夥伴。免費 30 分鐘流程健檢。">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="index.css">
+    
+    <!-- 浮動 LINE 按鈕與社群小圖標樣式 -->
+    <style>
+        .floating-line-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #00B900;
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0, 185, 0, 0.3);
+            text-decoration: none;
+            z-index: 99;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .floating-line-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 185, 0, 0.4);
+            color: white;
+        }
+        .social-link {
+            color: var(--text-slate-400);
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .social-link:hover {
+            color: var(--white);
+        }
+        .social-link.line:hover {
+            color: #00B900;
+        }
+        @media (max-width: 640px) {
+            .floating-line-btn {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                padding: 0.625rem 1rem;
+            }
+        }
+    </style>
+    
+    <!-- 引入 Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- 頂部導覽列 -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo" onclick="console.log('🖱️ 點擊 Logo');">
+                <span class="logo-icon">智</span>
+                <span class="logo-text">智簡 <span class="logo-sub">Zhi Jian</span></span>
+            </a>
+            <div class="navbar-links">
+                <a href="#services" class="nav-link" onclick="console.log('🖱️ 導覽：服務介紹');">服務介紹</a>
+                <a href="#demos" class="nav-link" onclick="console.log('🖱️ 導覽：Demo 體驗');">Demo 體驗</a>
+                <a href="#faq" class="nav-link" onclick="console.log('🖱️ 導覽：常見問題');">常見問題</a>
+                <a href="#contact" class="nav-link" onclick="console.log('🖱️ 導覽：聯絡我們');">聯絡我們</a>
+                <a href="#contact" class="btn-primary btn-sm" onclick="console.log('🖱️ 導覽：免費諮詢');">
+                    免費諮詢 <i data-lucide="arrow-right" class="icon-sm"></i>
+                </a>
+            </div>
+            <!-- 手機版漢堡選單 -->
+            <button class="navbar-toggle" id="navbarToggle" onclick="toggleMobileMenu(); console.log('🖱️ 開關手機選單');">
+                <i data-lucide="menu" class="icon-sm"></i>
+            </button>
+        </div>
+        <!-- 手機展開選單 -->
+        <div class="navbar-mobile" id="navbarMobile">
+            <a href="#services" class="nav-link-mobile" onclick="closeMobileMenu();">服務介紹</a>
+            <a href="#demos" class="nav-link-mobile" onclick="closeMobileMenu();">Demo 體驗</a>
+            <a href="#faq" class="nav-link-mobile" onclick="closeMobileMenu();">常見問題</a>
+            <a href="#contact" class="nav-link-mobile" onclick="closeMobileMenu();">聯絡我們</a>
+            <a href="#contact" class="nav-link-mobile nav-link-mobile-cta" onclick="closeMobileMenu();">免費諮詢</a>
+        </div>
+    </nav>
+
+    <!-- 1. Hero 區塊 -->
+    <section class="hero-section pattern-bg fade-in">
+        <div class="hero-bg-overlay"></div>
+        <div class="container relative z-10 text-center">
+            <div class="slide-up" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #94a3b8; font-size: 1rem; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: 0.05em;">
+                <i data-lucide="sparkles" class="icon-gold"></i>中小企業的 AI 駐點顧問
+            </div>
+
+            <h1 class="hero-title slide-up" style="margin-bottom: 2rem;">
+                別再養一支永遠缺人的團隊。<br />
+                <span class="text-gradient-gold">一位顧問，就是一支團隊。</span>
+            </h1>
+
+            <p class="hero-desc slide-up-delay-1"
+                style="max-width: 48rem; margin-left: auto; margin-right: auto; line-height: 1.8; font-size: 1.35rem; font-weight: 800; color: var(--gold); margin-bottom: 1.5rem; letter-spacing: 0.02em;">
+                AI 工具導入 × 社群經營代操 × Vibe Coding 快速開發
+            </p>
+
+            <p class="hero-desc slide-up-delay-1"
+                style="max-width: 48rem; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                智簡是您的 AI 駐點顧問。月費陪跑，一個人替您完成「培訓團隊用 AI、經營社群內容、開發專屬工具」三件事。不用再請三種人，也不必導入昂貴的大型系統，中小企業真正請得起的 AI 夥伴。
+            </p>
+
+            <div class="hero-cta slide-up-delay-3" style="margin-top: 3.5rem;">
+                <a href="#contact" class="btn-primary" onclick="console.log('🖱️ 點擊跳至聯絡我們表單');">
+                    免費預約 30 分鐘流程健檢 <i data-lucide="arrow-right" class="icon-sm"></i>
+                </a>
+            </div>
+
+            <!-- Hero Stats 信任指標列 -->
+            <div class="hero-stats slide-up-delay-3">
+                <div class="hero-stat-item">
+                    <span class="hero-stat-number">3 合 1</span>
+                    <span class="hero-stat-label">工具／社群／開發</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat-item">
+                    <span class="hero-stat-number">月費制</span>
+                    <span class="hero-stat-label">長期陪跑顧問</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat-item">
+                    <span class="hero-stat-number">100%</span>
+                    <span class="hero-stat-label">首次諮詢免費</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. 痛點放大 (The Agitation) -->
+    <section class="services-section bg-slate-light border-b border-slate-200">
+        <!-- 微妙的背景點綴 -->
+        <div class="glow-orb blue" style="width: 30vw; height: 30vw; top: 20%; right: -10%; opacity: 0.3;"></div>
+        
+        <div class="container text-center mb-16 fade-in relative z-10">
+            <h2 class="section-title text-gradient">您的公司，是否卡在「請不起、做不動」的中間夾層？</h2>
+            <p class="section-desc">想數位轉型、想經營社群、想做自己的工具，但每一項都要獨立養一個團隊，小公司根本負擔不起。</p>
+        </div>
+
+        <div class="container" style="max-width: 64rem; margin: 0 auto;">
+            <div class="grid-2x2">
+                <div class="guarantee-card pain-card slide-up" style="align-items: flex-start; text-align: left;">
+                    <div class="icon-box bg-blue-light mb-4-sm" style="margin-bottom: 1rem;">
+                        <i data-lucide="users" class="icon-blue"></i>
+                    </div>
+                    <h3 style="margin-bottom: 0.75rem;">人力請不起：一個專才起薪 5 萬起跳</h3>
+                    <p style="color: var(--text-slate-600);">想要小編、想要剪輯、想要工程師、想要 AI 顧問，每一個都要獨立聘人，中小企業養不起一整支團隊。</p>
+                </div>
+                <div class="guarantee-card pain-card slide-up-delay-1" style="align-items: flex-start; text-align: left;">
+                    <div class="icon-box bg-blue-light mb-4-sm" style="margin-bottom: 1rem;">
+                        <i data-lucide="sparkles" class="icon-blue"></i>
+                    </div>
+                    <h3 style="margin-bottom: 0.75rem;">工具追不完：新 AI 一週換一個</h3>
+                    <p style="color: var(--text-slate-600);">ChatGPT、Claude、Gemini、Midjourney⋯⋯ 不知道買哪個、怎麼用、誰來教，投入的訂閱費都變成白燒錢。</p>
+                </div>
+                <div class="guarantee-card pain-card slide-up-delay-2" style="align-items: flex-start; text-align: left;">
+                    <div class="icon-box bg-blue-light mb-4-sm" style="margin-bottom: 1rem;">
+                        <i data-lucide="megaphone-off" class="icon-blue"></i>
+                    </div>
+                    <h3 style="margin-bottom: 0.75rem;">內容產不出：社群想經營卻沒人寫</h3>
+                    <p style="color: var(--text-slate-600);">知道要做 IG、要拍短影音、要經營 LINE 官方，但自己寫自己剪根本沒時間，外包行銷公司又貴又慢。</p>
+                </div>
+                <div class="guarantee-card pain-card slide-up-delay-3" style="align-items: flex-start; text-align: left;">
+                    <div class="icon-box bg-blue-light mb-4-sm" style="margin-bottom: 1rem;">
+                        <i data-lucide="code-2" class="icon-blue"></i>
+                    </div>
+                    <h3 style="margin-bottom: 0.75rem;">系統做不動：找工程師動輒三十萬</h3>
+                    <p style="color: var(--text-slate-600);">想要一個活動頁、一個小工具、一個 LINE Bot，工程師開價三十萬起跳，等三個月還沒上線。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2.5 核心價值 (Core Pillars) -->
+    <section id="core-pillars" class="services-section bg-white border-b border-slate-200 relative overflow-hidden">
+        <div class="glow-orb blue" style="width: 40vw; height: 40vw; top: 10%; left: -10%; opacity: 0.15;"></div>
+        
+        <div class="container text-center mb-16 fade-in relative z-10">
+            <div class="hero-badge" style="margin-bottom: 1rem;">一個月費、一位顧問、一支團隊</div>
+            <h2 class="section-title text-gradient">智簡的三大核心支柱</h2>
+            <p class="section-desc">我們把老闆會需要的三種專業整合進一位駐點顧問——AI 工具導入、社群經營代操、快速開發，讓中小企業也請得起完整戰力。</p>
+        </div>
+
+        <div class="container relative z-10" style="max-width: 72rem; margin: 0 auto;">
+            <div class="grid-1x3">
+
+                <!-- 支柱 1：AI 工具導入 -->
+                <div class="service-card slide-up text-left" style="padding: 2.5rem;">
+                    <div class="icon-box bg-blue-light" style="margin-bottom: 1.5rem; width: 3.5rem; height: 3.5rem;">
+                        <i data-lucide="brain-circuit" class="icon-blue" style="width: 1.75rem; height: 1.75rem;"></i>
+                    </div>
+                    <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem;">AI 工具導入與團隊賦能</h3>
+                    <p style="color: var(--text-slate-600); line-height: 1.7; font-size: 1.05rem;">每月替您盤點、評估、篩選最新 AI 工具，親自帶領團隊上手，產出「照抄就能用」的 Prompt 工具包，並培育內部種子人員。</p>
+                </div>
+
+                <!-- 支柱 2：社群代操 -->
+                <div class="service-card slide-up-delay-1 text-left" style="padding: 2.5rem;">
+                    <div class="icon-box bg-gold-light" style="margin-bottom: 1.5rem; width: 3.5rem; height: 3.5rem;">
+                        <i data-lucide="megaphone" class="icon-gold" style="width: 1.75rem; height: 1.75rem;"></i>
+                    </div>
+                    <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem;">社群經營代操（企劃 / 文案 / 圖像 / 短影音）</h3>
+                    <p style="color: var(--text-slate-600); line-height: 1.7; font-size: 1.05rem;">IG、FB、Threads、LINE 官方帳號內容全包。一位顧問用 AI 完成企劃、文案、圖像、短影音剪輯，不用再請小編、設計、剪輯三個人。</p>
+                </div>
+
+                <!-- 支柱 3：Vibe Coding 快速開發 -->
+                <div class="service-card slide-up-delay-2 text-left" style="padding: 2.5rem;">
+                    <div class="icon-box bg-blue-light" style="margin-bottom: 1.5rem; width: 3.5rem; height: 3.5rem;">
+                        <i data-lucide="zap" class="icon-blue" style="width: 1.75rem; height: 1.75rem;"></i>
+                    </div>
+                    <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem;">Vibe Coding 快速開發</h3>
+                    <p style="color: var(--text-slate-600); line-height: 1.7; font-size: 1.05rem;">Landing Page、LINE Bot、極簡表單系統、產品 Prototype，3–7 天就交付。不用排工程師三個月，想到明天就能開始做。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 核心解方 (The Solutions) -->
+    <section id="services" class="services-section bg-white border-b border-slate-200 relative overflow-hidden">
+        <!-- 微妙的背景點綴 -->
+        <div class="glow-orb gold" style="width: 40vw; height: 40vw; top: -10%; left: -20%; opacity: 0.15;"></div>
+
+        <div class="container text-center mb-16 fade-in relative z-10">
+            <h2 class="section-title text-gradient">加購式「特效藥」：四大單次專案</h2>
+            <p class="section-desc">還沒準備好月費陪跑？先選一個痛點最大的特效藥，單次導入、立即見效。</p>
+        </div>
+
+        <div class="container" style="max-width: 1024px; margin: 0 auto;">
+            <div class="grid-2x2">
+                <div class="service-card slide-up">
+                    <div class="service-content">
+                        <h3 class="service-title" style="margin-bottom: 0.5rem;">
+                            <i data-lucide="settings-2"
+                                style="display:inline-block; vertical-align:middle; width:1.4rem; height:1.4rem; margin-right:0.4rem; color:var(--navy);"></i>
+                            自動化工作流
+                        </h3>
+                        <p class="service-tagline">讓系統替您跑腿</p>
+                        <p class="service-desc" style="margin-bottom: 1.5rem; color: var(--navy-light);">
+                            串接 LINE、表單與信箱。客戶一填單，系統即自動分類、發送通知並完成建檔。
+                        </p>
+                        <hr style="border: 0; border-top: 1px dashed var(--border-slate-200); margin: 1rem 0;" />
+                        <div class="badge-emerald" style="margin-bottom: 0.5rem;">核心獲益</div>
+                        <p class="text-slate text-sm font-semibold">徹底消滅「複製貼上」，實現零人工錯誤的無縫運作。</p>
+                    </div>
+                </div>
+
+                <!-- 特效藥二 -->
+                <div class="service-card slide-up-delay-1">
+                    <div class="service-content">
+                        <h3 class="service-title" style="margin-bottom: 0.5rem;">
+                            <i data-lucide="smartphone"
+                                style="display:inline-block; vertical-align:middle; width:1.4rem; height:1.4rem; margin-right:0.4rem; color:var(--navy);"></i>
+                            極簡專屬小工具
+                        </h3>
+                        <p class="service-tagline">會用手機就會用</p>
+                        <p class="service-desc" style="margin-bottom: 1.5rem; color: var(--navy-light);">
+                            打造只有幾個按鈕的專屬工具。例如：企業專屬 LINE 機器人，業務在外拍照回傳即刻建檔。
+                        </p>
+                        <hr style="border: 0; border-top: 1px dashed var(--border-slate-200); margin: 1rem 0;" />
+                        <div class="badge-emerald" style="margin-bottom: 0.5rem;">核心獲益</div>
+                        <p class="text-slate text-sm font-semibold">不用逼員工學新軟體，零學習成本，真正實現效率翻倍。</p>
+                    </div>
+                </div>
+
+                <!-- 特效藥三 -->
+                <div class="service-card slide-up-delay-2">
+                    <div class="service-content">
+                        <h3 class="service-title" style="margin-bottom: 0.5rem;">
+                            <i data-lucide="message-circle"
+                                style="display:inline-block; vertical-align:middle; width:1.4rem; height:1.4rem; margin-right:0.4rem; color:var(--navy);"></i>
+                            AI 智慧客服機器人
+                        </h3>
+                        <p class="service-tagline">24 小時不打烊的業務員</p>
+                        <p class="service-desc" style="margin-bottom: 1.5rem; color: var(--navy-light);">
+                            將您的常見問題、產品說明、服務流程餵給 AI，客戶在網站或 LINE 上詢問，秒獲準確回覆，不再漏接任何一筆生意。
+                        </p>
+                        <hr style="border: 0; border-top: 1px dashed var(--border-slate-200); margin: 1rem 0;" />
+                        <div class="badge-emerald" style="margin-bottom: 0.5rem;">核心獲益</div>
+                        <p class="text-slate text-sm font-semibold">80% 的常見詢問由 AI 自動回答，業務只需跟進真正有意願的客戶。</p>
+                    </div>
+                </div>
+
+                <!-- 特效藥四 -->
+                <div class="service-card slide-up-delay-3">
+                    <div class="service-content">
+                        <h3 class="service-title" style="margin-bottom: 0.5rem;">
+                            <i data-lucide="bar-chart-2"
+                                style="display:inline-block; vertical-align:middle; width:1.4rem; height:1.4rem; margin-right:0.4rem; color:var(--navy);"></i>
+                            AI 營運數據特助
+                        </h3>
+                        <p class="service-tagline">洗亮您的數據金礦</p>
+                        <p class="service-desc" style="margin-bottom: 1.5rem; color: var(--navy-light);">
+                            清洗多年混亂的髒資料。用語音或打字直接問系統：「上個月哪個產品最賺錢？」
+                        </p>
+                        <hr style="border: 0; border-top: 1px dashed var(--border-slate-200); margin: 1rem 0;" />
+                        <div class="badge-emerald" style="margin-bottom: 0.5rem;">核心獲益</div>
+                        <p class="text-slate text-sm font-semibold">讓死水般的資料變成決策依據，精準找出隱藏的利潤與漏財點。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.5 示範軟體體驗區 (Demo Hub) -->
+    <section id="demos" class="services-section bg-slate-light border-b border-slate-200 relative overflow-hidden">
+        <!-- 微妙的背景點綴 -->
+        <div class="glow-orb blue" style="width: 50vw; height: 50vw; bottom: 0; right: -20%; opacity: 0.2;"></div>
+
+        <div class="container text-center mb-16 fade-in relative z-10">
+            <h2 class="section-title text-gradient">親自體驗智簡的威力</h2>
+            <p class="section-desc">百聞不如一見，您可以親自點擊試用我們為客戶打造的 AI 輔助流程工具。</p>
+        </div>
+
+        <div class="container">
+            <div class="guarantee-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+
+                <!-- 示範軟體 1 -->
+                <div class="service-card slide-up" style="display: flex; flex-direction: column;">
+                    <div class="demo-card-img-wrap">
+                        <img src="demo_ocr.png" alt="手寫單據 AI 掃描數位化示意圖" class="demo-card-img" loading="lazy">
+                    </div>
+                    <div class="service-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
+                        <p style="font-size: 0.8rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold);">解決行政庶務痛點</p>
+                        <h3 class="text-navy" style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.625rem;">手寫單據一鍵數位化</h3>
+                        <p style="margin-bottom: 1.25rem; line-height: 1.65; flex-grow: 1; color: var(--text-slate-600); font-size: 0.9rem;">拍下字跡潦草的出貨單、發票或白板紀錄，AI 瞬間轉換為工整可編輯的 Excel 表格，讓行政團隊準時下班。</p>
+                        <a href="demo-ocr.html" target="_blank" class="btn-primary" style="width: 100%; text-decoration: none;" onclick="console.log('🖱️ 點擊測試：OCR demo');">
+                            立即測試 <i data-lucide="external-link" class="icon-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 示範軟體 2 -->
+                <div class="service-card slide-up-delay-1" style="display: flex; flex-direction: column;">
+                    <div class="demo-card-img-wrap">
+                        <img src="demo_contract.png" alt="AI 合約比對防雷示意圖" class="demo-card-img" loading="lazy">
+                    </div>
+                    <div class="service-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
+                        <p style="font-size: 0.8rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold);">解決法務與報價痛點</p>
+                        <h3 class="text-navy" style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.625rem;">合約與報價單防雷比對</h3>
+                        <p style="margin-bottom: 1.25rem; line-height: 1.65; flex-grow: 1; color: var(--text-slate-600); font-size: 0.9rem;">將兩份 PDF 上傳，AI 在 5 秒內精準抓出金額差異、違約金修改陷阱與漏字錯誤，大幅降低合約風險。</p>
+                        <a href="demo-contract.html" target="_blank" class="btn-primary" style="width: 100%; text-decoration: none;" onclick="console.log('🖱️ 點擊測試：合約比對 demo');">
+                            立即測試 <i data-lucide="external-link" class="icon-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 示範軟體 3：AI 客服 -->
+                <div class="service-card slide-up-delay-2" style="display: flex; flex-direction: column;">
+                    <div class="demo-card-img-wrap">
+                        <img src="demo_cs.png" alt="AI 智慧客服機器人示意圖" class="demo-card-img" loading="lazy">
+                    </div>
+                    <div class="service-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
+                        <p style="font-size: 0.8rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold);">解決客服人力痛點</p>
+                        <h3 class="text-navy" style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.625rem;">AI 智慧客服機器人</h3>
+                        <p style="margin-bottom: 1.25rem; line-height: 1.65; flex-grow: 1; color: var(--text-slate-600); font-size: 0.9rem;">把您的常見問題、產品說明、服務流程餵給 AI，客戶在網站或 LINE 上詢問，秒獲準確回覆，24 小時不打烊，不再漏接任何一筆生意。</p>
+                        <a href="demo-cs.html" target="_blank" class="btn-primary" style="width: 100%; text-decoration: none;" onclick="console.log('🖱️ 點擊測試：AI 客服 demo');">
+                            立即測試 <i data-lucide="external-link" class="icon-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 我們怎麼合作？ (The Process) -->
+    <section class="guarantee-section bg-white relative overflow-hidden border-b border-slate-200">
+        <div class="container text-center relative z-10 fade-in mb-16">
+            <h2 class="section-title text-navy">簡單三步驟，無痛升級您的辦公室</h2>
+            <p class="section-desc">把您的麻煩丟給我們，我們為您設計降本增效的最短路徑。</p>
+        </div>
+        <div class="container relative z-10">
+            <div class="process-steps-grid">
+                <!-- 步驟 1 -->
+                <div class="guarantee-card slide-up">
+                    <div class="guarantee-icon"><i data-lucide="ear"></i></div>
+                    <h3>1. 深入企業進行流程健檢</h3>
+                    <p>您只需告訴我們，現在哪件事情最花時間或最容易出錯，我們幫您尋找最機械化、浪費時間的重複性項目，提出專屬取代方案。</p>
+                </div>
+
+                <!-- 箭頭 1 -->
+                <div class="process-arrow" aria-hidden="true">
+                    <i data-lucide="arrow-right"></i>
+                </div>
+
+                <!-- 步驟 2 -->
+                <div class="guarantee-card slide-up-delay-1">
+                    <div class="guarantee-icon"><i data-lucide="clipboard-list"></i></div>
+                    <h3>2. 量身設計自動化工作流</h3>
+                    <p>不鎖定核心技術棧或推銷大系統。依據健檢結果，靈活幫助您設計並串接最合適的自動化工作流，用最輕量的方式解決問題。</p>
+                </div>
+
+                <!-- 箭頭 2 -->
+                <div class="process-arrow" aria-hidden="true">
+                    <i data-lucide="arrow-right"></i>
+                </div>
+
+                <!-- 步驟 3 -->
+                <div class="guarantee-card slide-up-delay-2">
+                    <div class="guarantee-icon"><i data-lucide="graduation-cap"></i></div>
+                    <h3>3. AI 賦能指導與提示詞訂製</h3>
+                    <p>親自教導您的團隊如何運用系統，並為您專屬訂製提示詞 (Prompt)，確保我們離開後系統依然穩定發揮戰力。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 成功案例與具體使用情境 (Use Cases) -->
+    <section id="use-cases" class="services-section bg-white border-b border-slate-200">
+        <div class="container text-center mb-16 fade-in">
+            <h2 class="section-title text-navy">看看其他企業如何透過智簡升級</h2>
+            <p class="section-desc">真實的導入情境，讓您看見 AI 帶來的具體改變。</p>
+        </div>
+        <div class="container" style="max-width: 72rem; margin: 0 auto;">
+            <div class="use-cases-grid">
+
+                <!-- 案例一：行政庶務 -->
+                <div class="usecase-card slide-up">
+                    <div class="usecase-icon-wrap">
+                        <img src="icon_ocr.png" alt="手寫單據數位化圖示" class="usecase-icon-img" loading="lazy">
+                    </div>
+                    <div class="usecase-body">
+                        <div class="usecase-tag">拯救行政庶務</div>
+                        <h3 class="usecase-title">手寫單據堆成山，行政每天加班到八點</h3>
+                        <p class="usecase-desc">
+                            某製造業客戶，業務每日回傳數十張手寫出貨單，行政人員需逐筆登打至 ERP。導入 AI 掃描辨識後，一張單據處理時間從 <strong>5 分鐘縮短至 20
+                                秒</strong>，行政團隊終於能準時下班。
+                        </p>
+                        <div class="usecase-result">
+                            <i data-lucide="trending-up"
+                                style="width:1rem;height:1rem;color:var(--emerald-600);flex-shrink:0;"></i>
+                            <span>每月節省 <strong>40+ 小時</strong>人工登打時間</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 案例二：AI 客服 -->
+                <div class="usecase-card slide-up-delay-1">
+                    <div class="usecase-icon-wrap">
+                        <img src="icon_cs.png" alt="AI 客服機器人圖示" class="usecase-icon-img" loading="lazy">
+                    </div>
+                    <div class="usecase-body">
+                        <div class="usecase-tag">省下客服人力</div>
+                        <h3 class="usecase-title">每天漏接詢問，業績就這樣流失</h3>
+                        <p class="usecase-desc">
+                            某零售業客戶，每天有大量客戶在下班後詢問產品規格與報價，但沒有人力回覆。導入 AI 客服後，<strong>80% 的常見問題由 AI 自動回答</strong>，業務只需處理真正需要人工跟進的客戶，轉換率明顯提升。
+                        </p>
+                        <div class="usecase-result">
+                            <i data-lucide="trending-up"
+                                style="width:1rem;height:1rem;color:var(--emerald-600);flex-shrink:0;"></i>
+                            <span>客戶詢問回覆率從 <strong>40% 提升至 100%</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 案例三：數據決策 -->
+                <div class="usecase-card slide-up-delay-2">
+                    <div class="usecase-icon-wrap">
+                        <img src="icon_data.png" alt="AI 數據分析圖示" class="usecase-icon-img" loading="lazy">
+                    </div>
+                    <div class="usecase-body">
+                        <div class="usecase-tag">死水數據變決策</div>
+                        <h3 class="usecase-title">十年的 Excel 資料，從沒發揮過任何價值</h3>
+                        <p class="usecase-desc">
+                            某貿易業客戶，擁有龐大的歷史訂單資料，卻因格式混亂無法分析。清洗整合後，老闆第一次能直接問：「哪個客戶的毛利最高？」並在 <strong>5 秒內獲得準確答案</strong>。
+                        </p>
+                        <div class="usecase-result">
+                            <i data-lucide="trending-up"
+                                style="width:1rem;height:1rem;color:var(--emerald-600);flex-shrink:0;"></i>
+                            <span>發現 <strong>2 個長年虧損品項</strong>，當季即停產止血</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 6. 老闆最關心的常見問題 (FAQ) -->
+    <section id="faq" class="services-section bg-slate-light border-b border-slate-200 relative overflow-hidden">
+        <!-- 微妙的背景點綴 -->
+        <div class="glow-orb blue" style="width: 30vw; height: 30vw; top: 0; right: -10%; opacity: 0.25;"></div>
+
+        <div class="container text-center mb-16 fade-in relative z-10">
+            <h2 class="section-title text-gradient">常見問題解答</h2>
+            <p class="section-desc">消除您的疑慮，智簡致力於提供最透明、無負擔的顧問服務。</p>
+        </div>
+        <div class="container" style="max-width: 48rem;">
+            <div class="faq-accordion slide-up">
+
+                <!-- FAQ 1 -->
+                <div class="faq-item" onclick="toggleFaq(this); console.log('🖱️ FAQ 1 點擊');">
+                    <div class="faq-question">
+                        <div class="faq-q-left">
+                            <i data-lucide="help-circle" class="icon-gold" style="flex-shrink:0;"></i>
+                            <span>我們的員工年紀很大，連手機都不太會用，學得會嗎？</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="faq-chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>絕對沒問題！我們主打「智簡」，介面設計保證比 LINE 還簡單，只要會講話、會拍照就能用，不需死記硬背任何複雜步驟。</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item" onclick="toggleFaq(this); console.log('🖱️ FAQ 2 點擊');">
+                    <div class="faq-question">
+                        <div class="faq-q-left">
+                            <i data-lucide="help-circle" class="icon-gold" style="flex-shrink:0;"></i>
+                            <span>導入這個需要買昂貴的設備或升級電腦嗎？</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="faq-chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>完全不用。只要有現在大家都在用的智慧型手機，或者現有的辦公室電腦即可無縫接軌，不讓您多花一毛硬體的冤枉錢。</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item" onclick="toggleFaq(this); console.log('🖱️ FAQ 3 點擊');">
+                    <div class="faq-question">
+                        <div class="faq-q-left">
+                            <i data-lucide="help-circle" class="icon-gold" style="flex-shrink:0;"></i>
+                            <span>月費陪跑大概多少？和單次專案差在哪？</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="faq-chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>月費方案從 10 萬 / 月起，涵蓋 AI 工具導入、社群內容代操、Vibe Coding 小工具開發，合約 3 個月起跳、續約制。若您只想解決一個痛點（例如 OCR、合約比對、AI 客服），也可以選單次專案導入。第一步的流程健檢完全免費，評估後我們會給最透明的報價。</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3-2：社群代操 -->
+                <div class="faq-item" onclick="toggleFaq(this); console.log('🖱️ FAQ 3-2 點擊');">
+                    <div class="faq-question">
+                        <div class="faq-q-left">
+                            <i data-lucide="help-circle" class="icon-gold" style="flex-shrink:0;"></i>
+                            <span>社群代操包含哪些？一個人真的做得完嗎？</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="faq-chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>我們提供 IG / FB / Threads / LINE 官方帳號的內容企劃、AI 文案撰寫、AI 圖像製作、AI 短影音剪輯。因為全程以 AI 工具加速，一位顧問的產出相當於傳統 3 人團隊（小編＋設計＋剪輯）。每月固定產出量在提案時明列，透明可控。</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item" onclick="toggleFaq(this); console.log('🖱️ FAQ 4 點擊');">
+                    <div class="faq-question">
+                        <div class="faq-q-left">
+                            <i data-lucide="help-circle" class="icon-gold" style="flex-shrink:0;"></i>
+                            <span>導入後如果系統出問題，誰負責維護？</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="faq-chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>我們不是丟完就跑。專案上線後，我們提供固定的線上支援時段，並確保您的內部人員有能力自行維運。若有重大問題，我們承諾 24 小時內回應。</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item" onclick="toggleFaq(this); console.log('🖱️ FAQ 5 點擊');">
+                    <div class="faq-question">
+                        <div class="faq-q-left">
+                            <i data-lucide="help-circle" class="icon-gold" style="flex-shrink:0;"></i>
+                            <span>公司規模很小，只有 5 個人，適合導入嗎？</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="faq-chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>非常適合！事實上，5～50 人的中小型企業、地方店家、個人品牌與新創團隊，是我們最主要的服務對象。規模越小，一位顧問頂三種專才的槓桿越大，投資報酬率反而更快顯現。</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5-2：小店家導流 -->
+                <div class="faq-item" onclick="toggleFaq(this); console.log('🖱️ FAQ 5-2 點擊');">
+                    <div class="faq-question">
+                        <div class="faq-q-left">
+                            <i data-lucide="help-circle" class="icon-gold" style="flex-shrink:0;"></i>
+                            <span>我只是小店家，月費 10 萬太貴，還有其他方案嗎？</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="faq-chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>有！我們另有「在地店家方案」專為 1–5 人小店設計：<strong>NT$ 2,000–5,000 一次性 Google 商家建檔</strong>，或 <strong>NT$ 1,500–3,000 / 月</strong> 的全包月代管（含每月 4 篇貼文、48h 評論回覆、節慶更新、月報）。合作半年後可再升級一頁式網站、LINE 官方帳號、在地廣告投放等加值服務。歡迎先預約免費 30 分鐘健檢，現場評估最合適的方案。</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 6：Vibe Coding -->
+                <div class="faq-item" onclick="toggleFaq(this); console.log('🖱️ FAQ 6 點擊');">
+                    <div class="faq-question">
+                        <div class="faq-q-left">
+                            <i data-lucide="help-circle" class="icon-gold" style="flex-shrink:0;"></i>
+                            <span>Vibe Coding 真的 3–7 天能交付嗎？品質會不會很粗糙？</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="faq-chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Vibe Coding 指的是用 AI 輔助的快速開發方法，適用於 Landing Page、活動頁、LINE Bot、小型查詢工具與 Prototype。我們會在需求確認當天開始動工，最快 3 天、最慢 7 天完成首版，您審視確認後再上線。這套作法適合要「快速驗證」或「活動用」的情境；若您需要複雜企業級系統，我們會誠實建議不適合，並提供替代方案。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. 聯絡我們 & Trust -->
+    <section id="contact" class="contact-section bg-white">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info slide-up">
+                    <div class="hero-badge" style="margin-bottom: 1.5rem;">中部在地・一人駐點・月費陪跑</div>
+                    <h2 class="section-title text-navy">把 AI 團隊，裝進您的公司。</h2>
+                    <p class="contact-desc" style="color: var(--text-slate-600);">
+                        不必花百萬請大型顧問公司，也不必再去獵小編、設計、剪輯、工程師。<br /><br />一個月費、一位顧問、三大支柱，中小企業也請得起的 AI 夥伴。</p>
+
+                    <dl class="contact-list" style="margin-top: 2rem;">
+                        <div class="contact-item">
+                            <dt><i data-lucide="map-pin" class="icon-gold"></i></dt>
+                            <dd><span class="text-navy font-semibold">台中市西屯區（中部在地團隊）</span></dd>
+                        </div>
+                        <div class="contact-item">
+                            <dt><i data-lucide="phone" class="icon-gold"></i></dt>
+                            <dd><a href="tel:+886-933-580-232" class="text-navy font-semibold">0933-580-232</a></dd>
+                        </div>
+                        <div class="contact-item">
+                            <dt><i data-lucide="mail" class="icon-gold"></i></dt>
+                            <dd><a href="mailto:Harryhua05@gmail.com"
+                                    class="text-navy font-semibold">Harryhua05@gmail.com</a></dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <div class="contact-form-container slide-up-delay-1">
+                    <!-- GAS API 表單：移除舊的 action/target/iframe，改用 fetch 送出 -->
+                    <form id="contactForm" class="contact-form shadow-sm border border-slate-200">
+
+                        <div class="form-group full-width" style="margin-bottom: 0.5rem;">
+                            <h3 class="text-navy" style="font-size: 1.25rem; font-weight: 700;">預約免費 30 分鐘流程健檢</h3>
+                            <p class="text-slate text-sm"
+                                style="margin-top: 0.5rem; line-height: 1.6; color: var(--text-slate-500);">
+                                📝 諮詢完全免費，且我們承諾：<strong>絕不向您強迫推銷不必要的大型系統。</strong>
+                            </p>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="company">公司名稱</label>
+                            <!-- name 屬性對應後端 GAS e.parameter.company -->
+                            <input type="text" id="company" name="company" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="name">聯絡人姓名 (必填)</label>
+                            <!-- name 屬性對應後端 GAS e.parameter.name -->
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="email">電子信箱 Email (必填)</label>
+                            <!-- name 屬性對應後端 GAS e.parameter.email -->
+                            <input type="email" id="email" name="email" required
+                                placeholder="example@company.com">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="phone">聯絡電話 (必填)</label>
+                            <!-- name 屬性對應後端 GAS e.parameter.phone -->
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group full-width" style="margin-top: 0.5rem;">
+                            <button type="submit" id="submitBtn" class="btn-submit">送出預約，找出隱形浪費</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成功送出 Toast 通知 -->
+    <div id="successToast" style="
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(0,0,0,0.45);
+    " onclick="closeToast()" aria-modal="true">
+        <div style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            border-radius: 1rem;
+            padding: 2.5rem 2rem;
+            max-width: 24rem;
+            width: 90vw;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+        " onclick="event.stopPropagation()">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🎉</div>
+            <h3 style="color: #1e3a5f; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem;">預約送出成功！</h3>
+            <p style="color: #64748b; line-height: 1.7; margin-bottom: 1.5rem;">
+                我們已收到您的資料，<br>將於 1 個工作天內與您聯繫。
+            </p>
+            <button onclick="closeToast()" style="
+                background: #c9a84c;
+                color: #fff;
+                border: none;
+                border-radius: 0.5rem;
+                padding: 0.75rem 2rem;
+                font-size: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+                width: 100%;
+            ">好的，期待您的聯繫 ✓</button>
+        </div>
+    </div>
+
+    <!-- 頁尾 -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-cta fade-in">
+                <p>「一位顧問、一個月費，就是您整支 AI 團隊。」</p>
+                <div class="footer-buttons">
+                    <button class="btn-primary"
+                        onclick="window.location.href='#contact'; console.log('🖱️ 點擊頁尾：立即預約');">立即預約免費健檢</button>
+                    <button class="btn-outline" onclick="console.log('🖱️ 點擊頁尾：閱讀成功案例');">閱讀成功案例</button>
+                </div>
+            </div>
+
+            <div class="footer-bottom fade-in" style="flex-direction: column; gap: 1.5rem;">
+                <div class="footer-links" style="margin-bottom: 0;">
+                    <a href="privacy.html" onclick="console.log('🖱️ 點擊隱私權政策');">隱私權政策</a>
+                    <a href="terms.html" onclick="console.log('🖱️ 點擊服務條款');">服務條款</a>
+                </div>
+                
+                <!-- 社群連結 -->
+                <div class="social-links" style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; margin-top: 0.5rem;">
+                    <a href="https://www.instagram.com/zhijian.tw?igsh=aDBiM3VmNm9kenpu&utm_source=qr" target="_blank" onclick="console.log('🖱️ 點擊 IG');" class="social-link" title="Instagram">
+                        <i data-lucide="instagram" style="width: 1.5rem; height: 1.5rem;"></i> IG
+                    </a>
+                    <a href="https://www.facebook.com/share/175i2hX32Q/?mibextid=wwXIfr" target="_blank" onclick="console.log('🖱️ 點擊 FB');" class="social-link" title="Facebook">
+                        <i data-lucide="facebook" style="width: 1.5rem; height: 1.5rem;"></i> FB
+                    </a>
+                    <a href="https://www.threads.com/@zhijian.tw?igshid=NTc4MTIwNjQ2YQ==" target="_blank" onclick="console.log('🖱️ 點擊 Threads');" class="social-link" title="Threads">
+                        <i data-lucide="at-sign" style="width: 1.5rem; height: 1.5rem;"></i> Threads
+                    </a>
+                    <a href="https://lin.ee/T9sD7kS" target="_blank" onclick="console.log('🖱️ 點擊 LINE (頁尾)');" class="social-link line" title="LINE">
+                        <i data-lucide="message-circle" style="width: 1.5rem; height: 1.5rem;"></i> LINE
+                    </a>
+                </div>
+
+                <p style="margin-top: 0.5rem;">&copy; 2026 智簡 Zhi Jian 數位流程優化. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        console.log('🚀 PAS 流程優化顧問網頁載入成功！開始監聽捲動動畫...');
+
+        // ── GAS API 設定 ─────────────────────────────────
+        // ⚠️ 部署 GAS 後，請將下方的網址換成您的 Web App 部署網址
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyCgtLw98VzkwBuH91rV5Eb7Awz9bPCteR1_mH8IYt0-G3JQmSf80zaqwEKaEu8AfbhpA/exec';
+
+        // ── 成功 Toast 控制 ───────────────────────────────
+        function showToast() {
+            const toast = document.getElementById('successToast');
+            toast.style.display = 'block';
+            console.log('✅ 顯示成功 Toast');
+        }
+
+        function closeToast() {
+            const toast = document.getElementById('successToast');
+            toast.style.display = 'none';
+            console.log('🔽 關閉成功 Toast');
+        }
+
+        // ── 預約表單送出（fetch + GAS API）──────────────────
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (!form) {
+                console.error('❌ 找不到 contactForm 元素');
+                return;
+            }
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault(); // 攔截預設送出，改用 fetch
+                console.log('📤 使用者點擊送出，開始用 fetch 送表單...');
+
+                // 防止連點：禁用按鈕並顯示 loading
+                submitBtn.disabled = true;
+                submitBtn.textContent = '傳送中...';
+                console.log('⏳ 按鈕狀態：已禁用，顯示傳送中');
+
+                // 收集表單資料
+                const formData = new FormData(form);
+                console.log('📋 表單資料：', {
+                    company: formData.get('company'),
+                    name:    formData.get('name'),
+                    email:   formData.get('email'),
+                    phone:   formData.get('phone'),
+                });
+
+                try {
+                    const response = await fetch(scriptURL, {
+                        method: 'POST',
+                        body: formData,
+                    });
+
+                    console.log('📡 GAS 回應 status：', response.status);
+
+                    const result = await response.json();
+                    console.log('📡 GAS 回應 JSON：', result);
+
+                    if (result.result === 'success') {
+                        // ✅ 成功：顯示 Toast、清空表單
+                        console.log('✅ 表單已成功送出！');
+                        form.reset();
+                        showToast();
+                    } else {
+                        // ⚠️ 後端回傳非 success
+                        console.warn('⚠️ 後端回傳非 success：', result);
+                        alert('傳送失敗，請稍後再試，或直接電話聯絡我們。');
+                    }
+
+                } catch (error) {
+                    // ❌ 網路錯誤或 CORS 錯誤
+                    console.error('❌ fetch 發生錯誤：', error);
+                    alert('傳送失敗，請稍後再試，或直接電話聯絡我們。');
+
+                } finally {
+                    // 無論成功或失敗，都恢復按鈕
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '送出預約，找出隱形浪費';
+                    console.log('🔄 按鈕已恢復正常狀態');
+                }
+            });
+
+            console.log('✅ 預約表單 GAS fetch 監聽器已就緒');
+        });
+
+        // 初始化 Lucide Icons
+        lucide.createIcons();
+
+        // ── Navbar 捲動效果 ──────────────────────────────
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('navbar-scrolled');
+                console.log('🔍 Navbar：捲動超過 20px，加深背景');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // ── 手機選單開關 ────────────────────────────────
+        function toggleMobileMenu() {
+            const menu = document.getElementById('navbarMobile');
+            menu.classList.toggle('is-open');
+            console.log('📱 手機選單狀態：', menu.classList.contains('is-open') ? '開啟' : '關閉');
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('navbarMobile');
+            menu.classList.remove('is-open');
+            console.log('📱 手機選單：已關閉');
+        }
+
+        // ── 捲軸動畫觀察者 ────────────────────────────────
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll(
+                '.fade-in, .slide-up, .slide-up-delay-1, .slide-up-delay-2, .slide-up-delay-3'
+            );
+            animatedElements.forEach(el => observer.observe(el));
+            console.log(`✅ 動畫觀察者已啟動，監聽 ${animatedElements.length} 個元素`);
+        });
+
+        // ── FAQ Accordion ─────────────────────────────
+        function toggleFaq(item) {
+            const isOpen = item.classList.contains('is-open');
+
+            // 先關閉所有已開啟的項目
+            document.querySelectorAll('.faq-item.is-open').forEach(openItem => {
+                openItem.classList.remove('is-open');
+                console.log('🔽 FAQ 收合：', openItem.querySelector('span').textContent.trim().slice(0, 15));
+            });
+
+            // 若原本是關閉，則展開這個
+            if (!isOpen) {
+                item.classList.add('is-open');
+                console.log('🔼 FAQ 展開：', item.querySelector('span').textContent.trim().slice(0, 15));
+            }
+        }
+    </script>
+
+    <!-- 浮動 LINE 客服按鈕 -->
+    <a href="https://lin.ee/T9sD7kS" target="_blank" class="floating-line-btn" onclick="console.log('🖱️ 點擊浮動 LINE 客服');">
+        <i data-lucide="message-circle" style="width: 1.5rem; height: 1.5rem;"></i>
+        <span>LINE 客服</span>
+    </a>
+</body>
+
+</html>
