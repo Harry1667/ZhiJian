@@ -1,0 +1,23 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+03-Skills/003-infra-memory/source.md
+
+# OS
+.DS_Store
+Thumbs.db
+._*
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Build
+node_modules/
+dist/
+build/
+.cache/
