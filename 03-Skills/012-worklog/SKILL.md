@@ -18,7 +18,7 @@ triggers:
 ### 設定
 
 - API: `https://worklog.looptw.com/api/log`
-- Token: [設定在本機，不入 git]
+- Token: `83683276`
 - 台灣時區 (UTC+8)
 
 ### 執行步驟
