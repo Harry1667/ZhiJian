@@ -16,3 +16,24 @@
 
 ## 相關
 低門檻入口：[GoogleBusiness](https://github.com/Harry1667/GoogleBusiness)
+
+---
+
+## English
+
+Brand site for ZhiJian (智簡) — a solo AI consultancy embedded with SMBs on a monthly retainer. Three service pillars: AI tooling, social-media operations, and rapid product builds ("Vibe Coding").
+
+### Three service pillars
+| Pillar | What it covers |
+|--------|----------------|
+| 🧠 AI tooling | Evaluating and selecting AI tools, training the team, packaging reusable prompt kits |
+| 📣 Social operations | Full-stack content: planning, copy, images, short-form video |
+| 💻 Vibe Coding | Landing pages, small internal tools, and automation flows shipped fast |
+
+### Retainer tiers
+- Light retainer: NT$100k / month
+- Standard residency: NT$200k / month
+- Deep integration: NT$300k / month
+
+### Related
+Low-friction entry point: [GoogleBusiness](https://github.com/Harry1667/GoogleBusiness)
